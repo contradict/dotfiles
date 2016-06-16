@@ -23,6 +23,8 @@ shopt -s checkwinsize
 
 # make less more friendly for non-text input files, see lesspipe(1)
 [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
+# Display ansi colors in less
+export LESS="-R"
 
 # set variable identifying the chroot you work in (used in the prompt below)
 if [ -z "$debian_chroot" ] && [ -r /etc/debian_chroot ]; then
@@ -89,14 +91,13 @@ fi
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
 # sources /etc/bash.bashrc).
-if ! shopt -oq posix; then
-    if [ -f /usr/share/bash-completion/bash_completion ]; then
-        . /usr/share/bash-completion/bash_completion
-    elif [ -f /etc/bash_completion ]; then
-        . /etc/bash_completion
-    fi
+if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
+    . /etc/bash_completion
 fi
 
+export EDITOR=vim
+
+export LD_LIBRARY_PATH=/usr/local/cuda-7.0/lib64:$LD_LIBRARY_PATH
 
 if [ -d ~/.rcscripts ]; then
     for x in ~/.rcscripts/E*.sh; do
@@ -107,41 +108,5 @@ if [ -d ~/.rcscripts ]; then
     unset x
 fi
 
-# Display ansi colors in less
-export LESS="-R"
-
-export EDITOR=vim
-
-# TMUX
-# If not running interactively, do not do anything
-[[ $- != *i* ]] && return
-if which tmux 2>&1 >/dev/null; then
-    _set_tmux_option() {
-        local SAVED
-        if [ -n "$TMUX" ]; then
-            SAVED=$(tmux show-options -wqv $1)
-            if [ -n "$2" ]; then
-                tmux set-option -wq $1 $2
-            else
-                tmux set-option -wqu $1
-            fi
-        fi
-        echo ${SAVED}
-    }
-    _set_alternate_prefix() {
-        _set_tmux_option prefix C-a
-    }
-    _set_alternate_color() {
-        _set_tmux_option status-bg colour22
-    }
-    ssh_inside_tmux() {
-        local SAVEDPREFIX=$(_set_alternate_prefix)
-        local SAVEDCOLOR=$(_set_alternate_color)
-        ssh $@
-        _set_tmux_option prefix ${SAVEDPREFIX} >>/dev/null
-        _set_tmux_option status-bg ${SAVEDCOLOR} >>/dev/null
-    }
-    alias ssh=ssh_inside_tmux
-    #if not inside a tmux session, and if no session is started, start a new session
-    [[ -z "$TMUX" ]] && exec tmux new-session
-fi
+#if not inside a tmux session, and if no session is started, start a new session
+[[ -z "$TMUX" ]] && exec tmux new-session
