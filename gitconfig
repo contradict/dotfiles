@@ -1,0 +1,17 @@
+[user]
+	name = contradict
+	email = contradict@gmail.com
+[push]
+	default = tracking
+[color]
+	diff = auto
+	status = auto
+	branch = auto
+	grep = auto
+	interactive = auto
+	ui = auto
+	pager = true
+[apply]
+	whitespace=fix
+[diff]
+	algorithm = patience
