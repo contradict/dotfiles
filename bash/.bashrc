@@ -53,6 +53,10 @@ case "$TERM" in
         ;;
 esac
 
+if [ "$(type -t __git_ps1)" == "" ]; then
+    __git_ps1() { return 0; }
+fi
+
 if [ "$color_prompt" = yes ]; then
     PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[01;35m\]$(__git_ps1 " (%s)")\[\033[00m\]\$ '
 else
@@ -109,4 +113,4 @@ if [ -d ~/.rcscripts ]; then
 fi
 
 #if not inside a tmux session, and if no session is started, start a new session
-[[ -z "$TMUX" ]] && exec tmux new-session
+[[ -z "$TMUX" ]] && which tmux >>/dev/null && exec tmux new-session
