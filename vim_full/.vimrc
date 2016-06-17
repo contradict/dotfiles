@@ -1,5 +1,21 @@
 set rtp+=/usr/share/vim/addons
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+Plugin 'Valloric/YouCompleteMe'
+Plugin 'scrooloose/syntastic'
+Plugin 'Valloric/ListToggle'
+Plugin 'tikhomirov/vim-glsl'
+Plugin 'JuliaLang/julia-vim'
+Plugin 'sirtaj/vim-openscad'
+Plugin 'jelera/vim-javascript-syntax'
+Plugin 'bkad/CamelCaseMotion'
+Plugin 'fatih/vim-go'
+
+call vundle#end()
+
 filetype plugin indent on "indent depends on filetype
+"" YouCompleteMe
+let g:ycm_key_list_previous_completion=['<Up>']
 
 set nocompatible
 " set backspace to be able to delete previous characters
@@ -60,3 +76,7 @@ au BufRead,BufNewFile *.go set makeprg=go\ build
 let g:xml_syntax_folding=1
 au FileType xml setlocal foldmethod=syntax
 
+au! BufRead,BufNewFile *.scad set filetype=openscad
+
+" better javascript folding
+au FileType javascript call JavaScriptFold()
