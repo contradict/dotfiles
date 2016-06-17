@@ -6,7 +6,7 @@ function start_agent {
     if [ ! -d ${SSH_DIR} ]; then
         echo "Creating new SSH directory"
         mkdir -p ${SSH_DIR}
-        chmod 600 ${SSH_DIR}
+        chmod 700 ${SSH_DIR}
     fi
     touch ${SSH_ENV}
     chmod 600 "${SSH_ENV}"
