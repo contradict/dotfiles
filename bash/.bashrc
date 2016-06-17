@@ -10,9 +10,9 @@
 # ... or force ignoredups and ignorespace
 # Avoid duplicate entries
 HISTCONTROL="erasedups:ignoreboth"
-# Huge history. Doesn't appear to slow things down, so why not?
-HISTSIZE=500000
-HISTFILESIZE=100000
+# Unlimited history size
+HISTSIZE=
+HISTFILESIZE=
 
 # append to the history file, don't overwrite it
 shopt -s histappend
