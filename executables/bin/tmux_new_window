@@ -1,0 +1,3 @@
+#!/bin/bash
+cmd="$@"
+tmux new-window -dk -n roslaunch-prefix "ROS_NAMESPACE=${ROS_NAMESPACE} ${cmd}"

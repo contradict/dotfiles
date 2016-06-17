@@ -1,0 +1,3 @@
+#!/bin/bash
+cmd="gdb -ex run --args $@"
+tmux new-window -dk -n pose_ukf_gdb "${cmd}"
