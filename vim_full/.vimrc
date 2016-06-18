@@ -53,7 +53,7 @@ highlight ColorColumn ctermbg=red
 set t_Co=256
 let g:inkpot_black_background = 1
 colorscheme inkpot
-"syntax enable
+syntax enable
 
 set foldenable
 set foldmethod=syntax
