@@ -1,6 +1,12 @@
 #!/bin/bash
 
 STOW=/usr/bin/stow
+
+if [ ! -x ${STOW} ]; then
+    echo "Need to apt-get install stow"
+    exit 1
+fi
+
 STOWARGS="-v -t ${HOME}"
 
 VIM=/usr/bin/vim
