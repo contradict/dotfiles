@@ -17,6 +17,9 @@ filetype plugin indent on "indent depends on filetype
 "" YouCompleteMe
 let g:ycm_key_list_previous_completion=['<Up>']
 
+""" syntastic
+let g:syntastic_python_checkers = ['pyflakes']
+
 set nocompatible
 " set backspace to be able to delete previous characters
 set bs=2
