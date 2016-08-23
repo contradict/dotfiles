@@ -19,9 +19,11 @@
 define plot1d_opt_range
   shell rm -f __plot1d.dump __plot1d.dat __plot1d.gp
   set logging file __plot1d.dump
+  set print repeats unlimited
   set logging on
   output $arg0
   set logging off
+  set print repeats 10
   shell awk '{printf("%s", $0)}' < __plot1d.dump | \
     sed 's/^{\(.*\)}$/\1/;s/, */\n/g' > __plot1d.dat
   shell echo "set yrange $arg2; plot '__plot1d.dat' $arg1 title '$arg0'; \
