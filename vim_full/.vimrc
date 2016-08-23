@@ -16,6 +16,7 @@ call vundle#end()
 filetype plugin indent on "indent depends on filetype
 "" YouCompleteMe
 let g:ycm_key_list_previous_completion=['<Up>']
+let g:ycm_global_ycm_extra_conf = '~/.vim/.ycm_extra_conf.py'
 
 """ syntastic
 let g:syntastic_python_checkers = ['pyflakes']
