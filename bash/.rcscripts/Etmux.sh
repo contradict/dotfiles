@@ -10,9 +10,9 @@ if which tmux 2>&1 >/dev/null; then
         if [ -n "$TMUX" ]; then
             SAVED=$(tmux show-options -wqv $1)
             if [ -n "$2" ]; then
-                tmux set-option -wq $1 $2
+                tmux set-option -q $1 $2
             else
-                tmux set-option -wqu $1
+                tmux set-option -qu $1
             fi
         fi
         echo ${SAVED}
@@ -26,7 +26,7 @@ if which tmux 2>&1 >/dev/null; then
     ssh_inside_tmux() {
         local SAVEDPREFIX=$(_set_alternate_prefix)
         local SAVEDCOLOR=$(_set_alternate_color)
-        ssh $@
+        /usr/bin/env ssh $@
         _set_tmux_option prefix ${SAVEDPREFIX} >>/dev/null
         _set_tmux_option status-bg ${SAVEDCOLOR} >>/dev/null
     }
