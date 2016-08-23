@@ -38,6 +38,7 @@ install_vim() {
 for pkg in ${easy_packages}; do
     install_easy $pkg
 done
+pushd git && cp .gitconfig.template .gitconfig ; popd
 
 if [ -x "$(which vim)" -a -x "$(which git)" ] && vim --version | grep -q +python; then
     echo "Installing complete vim config"
