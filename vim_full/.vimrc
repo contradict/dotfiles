@@ -13,6 +13,7 @@ Plugin 'fatih/vim-go'
 
 call vundle#end()
 
+filetype plugin on
 filetype plugin indent on "indent depends on filetype
 "" YouCompleteMe
 let g:ycm_key_list_previous_completion=['<Up>']
@@ -84,3 +85,6 @@ au! BufRead,BufNewFile *.scad set filetype=openscad
 
 " better javascript folding
 au FileType javascript call JavaScriptFold()
+
+" yml 2-space indent
+au FileType yaml setlocal tabstop=2 expandtab shiftwidth=2 softtabstop=2
