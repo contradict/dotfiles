@@ -16,7 +16,7 @@ function start_agent {
 }
 
 # Source SSH settings, if applicable
-if [ -z "${SSH_AUTH_SOCK}" ]; then
+if [ -z "${SSH_AGENT_PID}" ]; then
     if [ -f "${SSH_ENV}" ]; then
         . "${SSH_ENV}" > /dev/null
         kill -0 $SSH_AGENT_PID 2>/dev/null || {
