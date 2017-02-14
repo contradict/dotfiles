@@ -16,7 +16,7 @@ function start_agent {
 }
 
 function should_start_agent {
-    if [ -n ${SSH_AUTH_SOCK} ]; then
+    if [ -n "${SSH_AUTH_SOCK}" ]; then
         # have an auth sock
         if echo ${SSH_AUTH_SOCK} | grep -q run >>/dev/null; then
             # auth sock is for gnome-keyring, start our own
@@ -25,9 +25,10 @@ function should_start_agent {
             # good auth sock, no need
             false
         fi
+    else
+        # no auth sock, go for it
+        true
     fi
-    # no auth sock, go for it
-    true
 }
 
 # Source SSH settings, if applicable
