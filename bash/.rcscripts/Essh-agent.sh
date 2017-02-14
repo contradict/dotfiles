@@ -15,8 +15,23 @@ function start_agent {
     /usr/bin/ssh-add
 }
 
+function should_start_agent {
+    if [ -n ${SSH_AUTH_SOCK} ]; then
+        # have an auth sock
+        if echo ${SSH_AUTH_SOCK} | grep -q run >>/dev/null; then
+            # auth sock is for gnome-keyring, start our own
+            true
+        else
+            # good auth sock, no need
+            false
+        fi
+    fi
+    # no auth sock, go for it
+    true
+}
+
 # Source SSH settings, if applicable
-if [ -z "${SSH_AGENT_PID}" ]; then
+if should_start_agent; then
     if [ -f "${SSH_ENV}" ]; then
         . "${SSH_ENV}" > /dev/null
         kill -0 $SSH_AGENT_PID 2>/dev/null || {
@@ -26,3 +41,4 @@ if [ -z "${SSH_AGENT_PID}" ]; then
         start_agent
     fi
 fi
+
