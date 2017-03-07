@@ -20,7 +20,7 @@ let g:ycm_key_list_previous_completion=['<Up>']
 let g:ycm_global_ycm_extra_conf = '~/.vim/.ycm_extra_conf.py'
 
 """ syntastic
-let g:syntastic_python_checkers = ['pyflakes']
+let g:syntastic_python_checkers = ['flake8']
 
 set nocompatible
 " set backspace to be able to delete previous characters
@@ -88,3 +88,6 @@ au FileType javascript call JavaScriptFold()
 
 " yml 2-space indent
 au FileType yaml setlocal tabstop=2 expandtab shiftwidth=2 softtabstop=2
+
+" python folding on indent
+au FileType python setlocal foldmethod=indent
