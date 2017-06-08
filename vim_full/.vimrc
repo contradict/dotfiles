@@ -68,7 +68,7 @@ set foldmethod=syntax
 nnoremap <space> za
 
 highlight TrailingSpaces ctermbg=red
-match TrailingSpaces /  +$/
+match TrailingSpaces / \+$/
 
 " paste toggling
 set pastetoggle=<F2>
