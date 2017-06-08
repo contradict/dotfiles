@@ -18,9 +18,11 @@ filetype plugin indent on "indent depends on filetype
 "" YouCompleteMe
 let g:ycm_key_list_previous_completion=['<Up>']
 let g:ycm_global_ycm_extra_conf = '~/.vim/.ycm_extra_conf.py'
+let g:ycm_always_populate_location_list = 1
 
 """ syntastic
 let g:syntastic_python_checkers = ['flake8']
+let g:syntastic_always_populate_loc_list = 1
 
 set nocompatible
 " set backspace to be able to delete previous characters
