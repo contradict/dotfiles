@@ -82,7 +82,11 @@ au BufRead,BufNewFile *.go set makeprg=go\ build
 let g:xml_syntax_folding=1
 au FileType xml setlocal foldmethod=syntax
 
+" recognize OpenSCAD files
 au! BufRead,BufNewFile *.scad set filetype=openscad
+
+" recognize dockerfiles with extensions
+au! BufRead,BufNewFile Dockerfile.* set filetype=dockerfile syntax=dockerfile
 
 " better javascript folding
 au FileType javascript call JavaScriptFold()
