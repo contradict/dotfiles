@@ -52,9 +52,6 @@ set smartcase
 set statusline=%f%m%r%h%w\ [TYPE=%Y\ %{&ff}]\ [%l/%L\ %c\ (%p%%)]
 set laststatus=2
 
-highlight OverLength ctermbg=red ctermfg=white guibg=#592929
-match OverLength /\%>80v.\+/
-
 set colorcolumn=+1
 highlight ColorColumn ctermbg=red
 
