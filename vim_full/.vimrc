@@ -23,6 +23,8 @@ let g:ycm_always_populate_location_list = 1
 """ syntastic
 let g:syntastic_python_checkers = ['flake8']
 let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
 
 set nocompatible
 " set backspace to be able to delete previous characters
