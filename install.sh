@@ -35,6 +35,8 @@ install_vim() {
     popd
 }
 
+rm ~/.bash_logout ~/.bashrc ~/.profile
+
 for pkg in ${easy_packages}; do
     install_easy $pkg
 done
