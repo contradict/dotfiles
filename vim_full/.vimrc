@@ -3,12 +3,9 @@ set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'scrooloose/syntastic'
-Plugin 'Valloric/ListToggle'
-Plugin 'tikhomirov/vim-glsl'
 Plugin 'JuliaLang/julia-vim'
 Plugin 'sirtaj/vim-openscad'
 Plugin 'jelera/vim-javascript-syntax'
-Plugin 'bkad/CamelCaseMotion'
 Plugin 'fatih/vim-go'
 
 call vundle#end()
