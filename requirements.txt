@@ -1,0 +1,5 @@
+matplotlib
+scipy
+jupyter
+pylint
+flake8
