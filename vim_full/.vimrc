@@ -49,22 +49,25 @@ set smartcase
 set statusline=%f%m%r%h%w\ [TYPE=%Y\ %{&ff}]\ [%l/%L\ %c\ (%p%%)]
 set laststatus=2
 
-set colorcolumn=+1
-highlight ColorColumn ctermbg=red
-
 "Set color scheme
 set t_Co=256
 let g:inkpot_black_background = 1
 colorscheme inkpot
 syntax enable
 
+"mark last column of reasonable line length
+set colorcolumn=+1
+highlight ColorColumn ctermbg=red
+
+"Highlight trailing space
+highlight TrailingSpaces ctermbg=red
+match TrailingSpaces /  \+$/
+
+"Configure folding
 set foldenable
 set foldmethod=syntax
 "Set space to toggle a fold
 nnoremap <space> za
-
-highlight TrailingSpaces ctermbg=red
-match TrailingSpaces / \+$/
 
 " paste toggling
 set pastetoggle=<F2>
