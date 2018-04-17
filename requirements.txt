@@ -3,3 +3,5 @@ scipy
 jupyter
 pylint
 flake8
+tqdm
+virtualenv
