@@ -7,11 +7,13 @@ Plugin 'JuliaLang/julia-vim'
 Plugin 'sirtaj/vim-openscad'
 Plugin 'jelera/vim-javascript-syntax'
 Plugin 'fatih/vim-go'
+Plugin 'thinca/vim-localrc'
+Plugin 'tpope/vim-vividchalk'
+Plugin 'tpope/vim-sensible'
 
 call vundle#end()
 
 filetype plugin on
-filetype plugin indent on "indent depends on filetype
 "" YouCompleteMe
 let g:ycm_key_list_previous_completion=['<Up>']
 let g:ycm_global_ycm_extra_conf = '~/.vim/.ycm_extra_conf.py'
@@ -23,11 +25,13 @@ let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 
+
 set nocompatible
-" set backspace to be able to delete previous characters
-set bs=2
 " Enable line numbering, taking up 6 spaces
 set number
+
+" removed by vim-sensible, restore it
+set nrformats+=octal
 
 "Turn off word wrapping
 set nowrap
@@ -35,13 +39,11 @@ set textwidth=80
 
 "Turn on smart indent
 set expandtab
-set autoindent
 set tabstop=4 "set tab character to 4 characters
 set softtabstop=4
 set shiftwidth=4 "indent width for autoindent
 
 "Turn on incremental search with ignore case (except explicit caps)
-set incsearch
 set ignorecase
 set smartcase
 
@@ -51,9 +53,10 @@ set laststatus=2
 
 "Set color scheme
 set t_Co=256
-let g:inkpot_black_background = 1
-colorscheme inkpot
-syntax enable
+"let g:inkpot_black_background = 1
+"colorscheme inkpot
+set background=dark
+colorscheme vividchalk
 
 "mark last column of reasonable line length
 set colorcolumn=+1
@@ -98,4 +101,4 @@ au FileType yaml setlocal tabstop=2 expandtab shiftwidth=2 softtabstop=2
 au FileType python setlocal foldmethod=indent
 
 " wrap markdown files
-au FileType markdown setlocal wrap lbr nolist fo=l cc=
+au FileType markdown setlocal wrap lbr nolist fo+=l cc= tw=80 wm=80
