@@ -31,7 +31,7 @@ install_vim() {
         ${VIM} +PluginInstall +qall
     fi
     pushd ${VIMDIR}/bundle/YouCompleteMe
-    ./install.py --clang-completer
+    python3 install.py --clang-completer
     popd
 }
 
