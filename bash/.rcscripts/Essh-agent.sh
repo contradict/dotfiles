@@ -35,7 +35,7 @@ function should_start_agent {
 if should_start_agent; then
     if [ -f "${SSH_ENV}" ]; then
         . "${SSH_ENV}" > /dev/null
-        kill -0 $SSH_AGENT_PID 2>/dev/null || {
+        pidof ssh-agent | grep -q ${SSH_AGENT_PID} || {
             start_agent
         }
     else
