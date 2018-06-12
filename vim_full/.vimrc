@@ -1,19 +1,22 @@
+set nocompatible
+filetype off
 set rtp+=/usr/share/vim/addons
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'scrooloose/syntastic'
-Plugin 'JuliaLang/julia-vim'
 Plugin 'sirtaj/vim-openscad'
 Plugin 'jelera/vim-javascript-syntax'
 Plugin 'fatih/vim-go'
 Plugin 'thinca/vim-localrc'
 Plugin 'tpope/vim-vividchalk'
 Plugin 'tpope/vim-sensible'
+Plugin 'JuliaEditorSupport/julia-vim'
 
 call vundle#end()
 
-filetype plugin on
+filetype plugin indent on
+
 "" YouCompleteMe
 let g:ycm_key_list_previous_completion=['<Up>']
 let g:ycm_global_ycm_extra_conf = '~/.vim/.ycm_extra_conf.py'
@@ -26,7 +29,6 @@ let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 
 
-set nocompatible
 " Enable line numbering, taking up 6 spaces
 set number
 
@@ -84,9 +86,6 @@ au BufRead,BufNewFile *.go set makeprg=go\ build
 " XML folding
 let g:xml_syntax_folding=1
 au FileType xml setlocal foldmethod=syntax
-
-" recognize OpenSCAD files
-au! BufRead,BufNewFile *.scad set filetype=openscad
 
 " recognize dockerfiles with extensions
 au! BufRead,BufNewFile Dockerfile.* set filetype=dockerfile syntax=dockerfile
