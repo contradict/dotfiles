@@ -1,2 +1,3 @@
 [include]
     path=.git.d/default
+    path=.git.d/ipynb-filter
