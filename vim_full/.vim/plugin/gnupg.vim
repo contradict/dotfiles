@@ -568,7 +568,7 @@ function s:GPGDecrypt(bufread)
     " we must redirect stderr (using shell temporarily)
     call s:GPGDebug(1, "decrypting file")
     let cmd = { 'level': 1, 'ex': silent . 'read ++edit !' }
-    let cmd.args = '--quiet --decrypt ' . s:shellescape(filename, 1)
+    let cmd.args = '--quiet --ignore-mdc-error --decrypt ' . s:shellescape(filename, 1)
     call s:GPGExecute(cmd)
 
     if (v:shell_error) " message could not be decrypted
