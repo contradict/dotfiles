@@ -12,6 +12,7 @@ Plugin 'thinca/vim-localrc'
 Plugin 'tpope/vim-vividchalk'
 Plugin 'tpope/vim-sensible'
 Plugin 'JuliaEditorSupport/julia-vim'
+Plugin 'chiphogg/vim-prototxt'
 
 call vundle#end()
 
@@ -101,3 +102,7 @@ au FileType python setlocal foldmethod=indent
 
 " wrap markdown files
 au FileType markdown setlocal wrap lbr nolist fo+=l cc= tw=80 wm=80
+
+au BufNewFile,BufRead *.config,*.pbtxt setfiletype prototxt
+
+au FileType PROTOTXT setlocal foldmethod=indent
