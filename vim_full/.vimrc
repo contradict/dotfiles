@@ -12,6 +12,7 @@ Plugin 'thinca/vim-localrc'
 Plugin 'tpope/vim-vividchalk'
 Plugin 'tpope/vim-sensible'
 Plugin 'JuliaEditorSupport/julia-vim'
+Plugin 'rust-lang/rust.vim'
 Plugin 'chiphogg/vim-prototxt'
 
 call vundle#end()
