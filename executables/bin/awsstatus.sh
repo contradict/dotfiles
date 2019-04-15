@@ -4,5 +4,5 @@ aws ec2 describe-instances --output text \
              aIP:PrivateIpAddress,
              bHostname:(Tags[?Key==`Hostname`].Value)[0],
              cID:InstanceId,
-             dState:State.Name}' \
-    | grep -v None
+             dState:State.Name,
+             eRole:IamInstanceProfile.Arn}'
