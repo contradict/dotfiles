@@ -3,6 +3,7 @@ filetype off
 set rtp+=/usr/share/vim/addons
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
+Plugin 'VundleVim/Vundle.vim'
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'scrooloose/syntastic'
 Plugin 'sirtaj/vim-openscad'
