@@ -5,4 +5,5 @@ aws ec2 describe-instances --output text \
              bHostname:(Tags[?Key==`Hostname`].Value)[0],
              cID:InstanceId,
              dState:State.Name,
-             eRole:IamInstanceProfile.Arn}'
+             eRole:IamInstanceProfile.Arn
+             eType:InstanceType}'
