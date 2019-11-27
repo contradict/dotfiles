@@ -20,6 +20,7 @@ Plugin 'plasticboy/vim-markdown'
 Plugin 'ambv/black'
 Plugin '1995parham/vim-spice'
 Plugin 'ledger/vim-ledger'
+Plugin 'fisadev/vim-isort'
 
 call vundle#end()
 
@@ -59,6 +60,10 @@ let g:syntastic_check_on_wq = 0
 
 """ Julia
 let g:latex_to_unicode_auto = 1
+
+let g:vim_isort_map = '<C-i>'
+
+set encoding=utf-8
 
 " Enable line numbering, taking up 6 spaces
 set number
