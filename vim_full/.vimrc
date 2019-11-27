@@ -15,8 +15,15 @@ Plugin 'tpope/vim-sensible'
 Plugin 'JuliaEditorSupport/julia-vim'
 Plugin 'rust-lang/rust.vim'
 Plugin 'chiphogg/vim-prototxt'
+Plugin 'godlygeek/tabular'
+Plugin 'plasticboy/vim-markdown'
+Plugin 'ambv/black'
+Plugin '1995parham/vim-spice'
+Plugin 'ledger/vim-ledger'
 
 call vundle#end()
+
+runtime macros/matchit.vim
 
 filetype plugin indent on
 
@@ -42,6 +49,7 @@ let g:ycm_confirm_extra_conf = 1
 "let g:ycm_goto_buffer_command = 'same-buffer' "[ 'same-buffer', 'horizontal-split', 'vertical-split', 'new-tab' ]
 "let g:ycm_filetype_whitelist = { '*': 1 }
 "let g:ycm_key_invoke_completion = '<C-Space>'
+let g:ycm_python_interpreter = '/usr/bin/python3'
 
 """ syntastic
 let g:syntastic_python_checkers = ['flake8']
@@ -49,6 +57,8 @@ let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 
+""" Julia
+let g:latex_to_unicode_auto = 1
 
 " Enable line numbering, taking up 6 spaces
 set number
@@ -102,7 +112,7 @@ set pastetoggle=<F2>
 au BufNewFile,BufRead *.ino set filetype=cpp
 autocmd BufRead,BufNewFile *.ino setlocal syntax=cpp
 
-au BufRead,BufNewFile *.go set makeprg=go\ build
+au BufRead,BufNewFile *.md.html set filetype=markdown
 
 " XML folding
 let g:xml_syntax_folding=1
