@@ -2,6 +2,7 @@
 
 set history filename ~/.gdb/history
 set history save
+add-auto-load-safe-path .
 
 source ~/.gdb/python_printers.ksh
 source ~/.gdb/plot1d.gdb
