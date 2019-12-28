@@ -1,0 +1,6 @@
+.julia/artifacts/
+.julia/compiled/
+.julia/logs/
+.julia/packages/
+.julia/prefs/
+.julia/registries/

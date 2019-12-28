@@ -13,7 +13,7 @@ VIM=/usr/bin/vim
 VIMDIR=${HOME}/.vim
 VUNDLEDIR=${VIMDIR}/bundle/Vundle.vim
 
-easy_packages="bash gdb git readline tmux executables pylint"
+easy_packages="bash gdb git readline tmux executables pylint julia"
 
 install_easy() {
 	${STOW} ${STOWARGS} ${1}
