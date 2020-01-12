@@ -4,3 +4,7 @@
 .julia/packages/
 .julia/prefs/
 .julia/registries/
+.julia/clones/
+.julia/conda/
+.julia/dev/
+.julia/environments/
