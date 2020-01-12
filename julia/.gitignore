@@ -8,3 +8,5 @@
 .julia/conda/
 .julia/dev/
 .julia/environments/
+.julia/.cache/
+.julia/v?.?/
