@@ -52,9 +52,11 @@ let g:ycm_confirm_extra_conf = 1
 "let g:ycm_key_invoke_completion = '<C-Space>'
 let g:ycm_python_interpreter = '/usr/bin/python3'
 
+nnoremap <leader>yf :YcmCompleter FixIt<CR>
+
 """ syntastic
 let g:syntastic_python_checkers = ['flake8']
-let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_always_populate_loc_list = 0
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 let g:syntastic_disabled_filetypes=['JULIA']
