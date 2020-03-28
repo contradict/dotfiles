@@ -97,7 +97,7 @@ set t_Co=256
 "let g:inkpot_black_background = 1
 "colorscheme inkpot
 set background=dark
-colorscheme vividchalk
+silent! colorscheme vividchalk
 
 "mark last column of reasonable line length
 set colorcolumn=+1
