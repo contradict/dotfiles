@@ -11,3 +11,4 @@ jq
 powertop
 shellcheck
 golang
+wget
