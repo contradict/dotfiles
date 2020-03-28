@@ -6,3 +6,4 @@ flake8
 tqdm
 virtualenv
 black
+nbdime
