@@ -141,8 +141,8 @@ au FileType yaml setlocal tabstop=2 expandtab shiftwidth=2 softtabstop=2
 " python folding on indent
 au FileType python setlocal foldmethod=indent
 
-" wrap markdown files
-au FileType markdown setlocal wrap lbr nolist fo+=l cc= tw=80 wm=80
+" wrap and spell check markdown files
+au FileType markdown setlocal wrap lbr nolist fo+=l cc= tw=80 wm=80 spell
 
 au BufNewFile,BufRead *.config,*.pbtxt setfiletype prototxt
 
