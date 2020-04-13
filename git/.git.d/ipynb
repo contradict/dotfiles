@@ -1,0 +1,22 @@
+[filter "clean_ipynb"]
+    clean = "jq --indent 1 --monochrome-output \
+    '. + if .metadata.git.suppress_outputs then { \
+    cells: [.cells[] | . + if .cell_type == \"code\" then { \
+    outputs: [], execution_count: null } else {} end ] } else {} end'"
+
+    smudge = cat
+
+    required
+[diff "jupyternotebook"]
+	command = git-nbdiffdriver diff
+[merge "jupyternotebook"]
+	driver = git-nbmergedriver merge %O %A %B %L %P
+	name = jupyter notebook merge driver
+[difftool "nbdime"]
+	cmd = git-nbdifftool diff \"$LOCAL\" \"$REMOTE\"
+[difftool]
+	prompt = false
+[mergetool "nbdime"]
+	cmd = git-nbmergetool merge \"$BASE\" \"$LOCAL\" \"$REMOTE\" \"$MERGED\"
+[mergetool]
+	prompt = false
