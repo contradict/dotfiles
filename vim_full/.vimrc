@@ -56,7 +56,7 @@ nnoremap <leader>yf :YcmCompleter FixIt<CR>
 
 """ syntastic
 let g:syntastic_python_checkers = ['flake8']
-let g:syntastic_always_populate_loc_list = 0
+let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 let g:syntastic_disabled_filetypes=['JULIA']
@@ -107,6 +107,8 @@ highlight ColorColumn ctermbg=red
 highlight TrailingSpaces ctermbg=red
 match TrailingSpaces /  \+$/
 
+highlight Comment cterm=italic
+
 "Configure folding
 set foldenable
 set foldmethod=syntax
@@ -130,7 +132,7 @@ let g:xml_syntax_folding=1
 au FileType xml setlocal foldmethod=syntax
 
 " recognize dockerfiles with extensions
-au! BufRead,BufNewFile Dockerfile.* set filetype=dockerfile syntax=dockerfile
+au BufRead,BufNewFile Dockerfile.* set filetype=dockerfile syntax=dockerfile
 
 " better javascript folding
 au FileType javascript call JavaScriptFold()
