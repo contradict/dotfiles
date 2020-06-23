@@ -17,7 +17,7 @@ Plugin 'rust-lang/rust.vim'
 Plugin 'chiphogg/vim-prototxt'
 Plugin 'godlygeek/tabular'
 Plugin 'plasticboy/vim-markdown'
-Plugin 'ambv/black'
+Plugin 'psf/black'
 Plugin '1995parham/vim-spice'
 Plugin 'ledger/vim-ledger'
 Plugin 'fisadev/vim-isort'
@@ -56,6 +56,7 @@ nnoremap <leader>yf :YcmCompleter FixIt<CR>
 
 """ syntastic
 let g:syntastic_python_checkers = ['flake8']
+let g:syntastic_python_flake8_args = "--ignore=E203 --ignore=E266 --ignore=E501 --ignore=W503 --max-line-length=88 --select=B,C,E,F,W,T4,B9 --max-complexity=18"
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
