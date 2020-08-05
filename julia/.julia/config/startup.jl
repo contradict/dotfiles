@@ -7,11 +7,19 @@ macro install_and_use(pkgname)
     return quote
         local e
         try
-            @eval using Pkg
-            haskey(Pkg.installed(), $(string(pkgname))) || @eval Pkg.add($(string(pkgname)))
             @eval using $pkgname
         catch e
-            @warn "Error at initial setup of " * $(string(pkgname)) * ": $(e.msg)"
+            if isa(e, ArgumentError)
+                @eval using Pkg
+                @eval Pkg.add($(string(pkgname)))
+                try
+                    @eval using $pkgname
+                catch e
+                    @warn "Error at initial setup of " * $(string(pkgname)) * ": $(e.msg)"
+                end
+            else
+                @warn "Error using " * $(string(pkgname)) * ": $(e.msg)"
+            end
         end
     end
 end
