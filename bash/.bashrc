@@ -93,8 +93,6 @@ fi
 
 export EDITOR=vim
 
-export LD_LIBRARY_PATH=/usr/local/cuda/targets/x86_64-linux/lib:$LD_LIBRARY_PATH
-
 if [ -d ~/.rcscripts ]; then
     for x in ~/.rcscripts/E*.sh; do
         if [ -r ${x} ]; then
