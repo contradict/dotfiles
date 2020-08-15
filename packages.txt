@@ -13,3 +13,4 @@ shellcheck
 golang
 wget
 python3-venv
+cu
