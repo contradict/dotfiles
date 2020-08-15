@@ -21,6 +21,9 @@ Plugin 'psf/black'
 Plugin '1995parham/vim-spice'
 Plugin 'ledger/vim-ledger'
 Plugin 'fisadev/vim-isort'
+Plugin 'cespare/vim-toml'
+Plugin 'jpalardy/vim-slime'
+Plugin 'kdheepak/JuliaFormatter.vim'
 
 call vundle#end()
 
@@ -65,7 +68,16 @@ let g:syntastic_disabled_filetypes=['JULIA']
 """ Julia
 let g:latex_to_unicode_auto = 1
 
+""" JuliaFormatter
+nnoremap <localleader>jf :<C-u>call JuliaFormatter#Format(0)<CR>
+vnoremap <localleader>jf :<C-u>call JuliaFormatter#Format(1)<CR>
+
 let g:vim_isort_map = '<C-i>'
+
+let g:slime_target = "tmux"
+let g:slime_python_ipython = 1
+
+" let g:vim_markdown_fenced_languages = ['julia=JULIA']
 
 set encoding=utf-8
 
@@ -127,6 +139,11 @@ au BufNewFile,BufRead *.ino set filetype=cpp
 autocmd BufRead,BufNewFile *.ino setlocal syntax=cpp
 
 au BufRead,BufNewFile *.md.html set filetype=markdown
+
+au BufRead,BufNewFile *.jmd set filetype=markdown
+let g:vim_markdown_math = 1
+let g:vim_markdown_frontmatter = 1
+let g:vim_markdown_new_list_item_indent = 2
 
 " XML folding
 let g:xml_syntax_folding=1
