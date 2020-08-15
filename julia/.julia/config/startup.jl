@@ -1,35 +1,15 @@
 ENV["PYTHON"] = ""
 ENV["JULIA_REVISE_INCLUDE"] = 1
-
-using Logging
-
-macro install_and_use(pkgname)
-    return quote
-        local e
-        try
-            @eval using $pkgname
-        catch e
-            if isa(e, ArgumentError)
-                @eval using Pkg
-                @eval Pkg.add($(string(pkgname)))
-                try
-                    @eval using $pkgname
-                catch e
-                    @warn "Error at initial setup of " * $(string(pkgname)) * ": $(e.msg)"
-                end
-            else
-                @warn "Error using " * $(string(pkgname)) * ": $(e.msg)"
-            end
-        end
-    end
-end
-
 atreplinit() do repl
-    @install_and_use Revise
     try
+        @eval using OhMyREPL
+        @eval using Revise
         @async Revise.wait_steal_repl_backend()
+        @async begin
+            sleep(2)
+            OhMyREPL.Prompt.insert_keybindings()
+        end
     catch e
-        @warn "Unable to initialize Revise: $(e.msg)"
+        print(e)
     end
-    @install_and_use OhMyREPL
 end
