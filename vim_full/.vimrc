@@ -135,6 +135,8 @@ set t_Co=256
 "colorscheme inkpot
 set background=dark
 silent! colorscheme vividchalk
+hi clear SpellBad
+hi SpellBad ctermfg=lightred
 
 "mark last column of reasonable line length
 set colorcolumn=+1
