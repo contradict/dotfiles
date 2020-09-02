@@ -158,7 +158,7 @@ nnoremap <space> za
 set pastetoggle=<F2>
 
 " diff with changed file on disk
-command DiffOrig vert new | set bt=nofile | r # | 0d_ | diffthis | wincmd p | diffthis
+command! DiffOrig vert new | set bt=nofile | r # | 0d_ | diffthis | wincmd p | diffthis
 
 "ino is the Arduino main file extension
 au BufNewFile,BufRead *.ino set filetype=cpp
