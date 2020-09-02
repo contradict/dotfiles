@@ -25,6 +25,8 @@ Plugin 'fisadev/vim-isort'
 Plugin 'cespare/vim-toml'
 Plugin 'jpalardy/vim-slime'
 Plugin 'kdheepak/JuliaFormatter.vim'
+Plugin 'hashivim/vim-hashicorp-tools'
+Plugin 'jvirtanen/vim-hcl'
 
 call vundle#end()
 
