@@ -1,0 +1,4 @@
+[user "identity_name"]
+    name = user_name
+    email = user_email@example.com
+
