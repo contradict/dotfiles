@@ -4,7 +4,8 @@ set rtp+=/usr/share/vim/addons
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
-Plugin 'Valloric/YouCompleteMe'
+Plugin 'ycm-core/YouCompleteMe'
+Plugin 'ycm-core/lsp-examples'
 Plugin 'scrooloose/syntastic'
 Plugin 'sirtaj/vim-openscad'
 Plugin 'jelera/vim-javascript-syntax'
@@ -50,6 +51,25 @@ let g:ycm_server_log_level = 'info' "default info
 
 let g:ycm_confirm_extra_conf = 1
 
+let g:ycm_language_server = [
+    \   {
+    \     'name': 'julia',
+    \     'filetypes': [ 'julia' ],
+    \     'project_root_files': [ 'Project.toml' ],
+    \     'cmdline': ['julia', '--startup-file=no', '--history-file=no', '-e', '
+    \       using LanguageServer;
+    \       using Pkg;
+    \       import StaticLint;
+    \       import SymbolServer;
+    \       env_path = dirname(Pkg.Types.Context().env.project_file);
+    \
+    \       server = LanguageServer.LanguageServerInstance(stdin, stdout, env_path, "");
+    \       server.runlinter = true;
+    \       run(server);
+    \   ']
+    \  },
+    \ ]
+
 "let g:ycm_goto_buffer_command = 'same-buffer' "[ 'same-buffer', 'horizontal-split', 'vertical-split', 'new-tab' ]
 "let g:ycm_filetype_whitelist = { '*': 1 }
 "let g:ycm_key_invoke_completion = '<C-Space>'
@@ -75,7 +95,9 @@ vnoremap <localleader>jf :<C-u>call JuliaFormatter#Format(1)<CR>
 let g:vim_isort_map = '<C-i>'
 
 let g:slime_target = "tmux"
-let g:slime_python_ipython = 1
+let g:slime_default_config = {"socket_name": get(split($TMUX, ","), 0), "target_pane": ":.0"}
+""" suppress exit message on first C-c
+nnoremap <C-c> <silent> <C-c>
 
 " let g:vim_markdown_fenced_languages = ['julia=JULIA']
 
