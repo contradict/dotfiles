@@ -12,7 +12,10 @@ function start_agent {
     chmod 600 "${SSH_ENV}"
     /usr/bin/ssh-agent | sed '/^echo/d' > "${SSH_ENV}"
     . "${SSH_ENV}" > /dev/null
-    /usr/bin/ssh-add
+    (
+      shopt -s extglob
+      /usr/bin/ssh-add -q ~/.ssh/id_!(*.pub)
+    )
 }
 
 function should_start_agent {
