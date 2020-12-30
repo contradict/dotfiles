@@ -27,9 +27,11 @@ Plugin 'jpalardy/vim-slime'
 Plugin 'kdheepak/JuliaFormatter.vim'
 Plugin 'hashivim/vim-hashicorp-tools'
 Plugin 'jvirtanen/vim-hcl'
+Plugin 'morhetz/gruvbox'
 
 call vundle#end()
 
+" from vim-runtime package, fancier % matching
 runtime macros/matchit.vim
 
 filetype plugin indent on
@@ -134,7 +136,7 @@ set t_Co=256
 "let g:inkpot_black_background = 1
 "colorscheme inkpot
 set background=dark
-silent! colorscheme vividchalk
+silent! colorscheme gruvbox
 hi clear SpellBad
 hi SpellBad ctermfg=lightred
 
