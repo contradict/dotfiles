@@ -5,6 +5,7 @@ atreplinit() do repl
         @eval using OhMyREPL
         @eval using Revise
         @async Revise.wait_steal_repl_backend()
+        # https://github.com/KristofferC/OhMyREPL.jl/issues/166
         @async begin
             sleep(2)
             OhMyREPL.Prompt.insert_keybindings()
