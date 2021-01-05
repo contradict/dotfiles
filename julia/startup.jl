@@ -1,5 +1,12 @@
 ENV["PYTHON"] = ""
 ENV["JULIA_REVISE_INCLUDE"] = 1
+
+let history_file="./.repl_history.jl"
+    if isfile(history_file) || islink(history_file)
+        ENV["JULIA_HISTORY"] = history_file
+    end
+end
+
 atreplinit() do repl
     try
         @eval using OhMyREPL
