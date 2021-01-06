@@ -2,8 +2,10 @@ ENV["PYTHON"] = ""
 ENV["JULIA_REVISE_INCLUDE"] = 1
 
 let history_file="./.repl_history.jl"
-    if isfile(history_file) || islink(history_file)
-        ENV["JULIA_HISTORY"] = history_file
+    project_path=dirname(Base.active_project())
+    history_path=joinpath(project_path, history_file)
+    if isfile(history_path) || islink(history_path)
+        ENV["JULIA_HISTORY"] = history_path
     end
 end
 
