@@ -3,25 +3,23 @@ SSH_ENV="${SSH_DIR}/environment"
 
 function start_agent {
     echo "Initializing new SSH agent..."
-    if [ ! -d ${SSH_DIR} ]; then
+    if [ ! -d "${SSH_DIR}" ]; then
         echo "Creating new SSH directory"
-        mkdir -p ${SSH_DIR}
-        chmod 700 ${SSH_DIR}
+        mkdir -p "${SSH_DIR}"
+        chmod 700 "${SSH_DIR}"
     fi
-    touch ${SSH_ENV}
+    touch "${SSH_ENV}"
     chmod 600 "${SSH_ENV}"
     /usr/bin/ssh-agent | sed '/^echo/d' > "${SSH_ENV}"
     . "${SSH_ENV}" > /dev/null
-    (
-      shopt -s extglob
-      /usr/bin/ssh-add -q ~/.ssh/id_!(*.pub)
-    )
+    ALLIDS=$(find .ssh -path '*id_*' ! -path '*.pub')
+    /usr/bin/ssh-add -q "${ALLIDS}"
 }
 
 function should_start_agent {
     if [ -n "${SSH_AUTH_SOCK}" ]; then
         # have an auth sock
-        if echo ${SSH_AUTH_SOCK} | grep -q run >>/dev/null; then
+        if echo "${SSH_AUTH_SOCK}" | grep -q run >>/dev/null; then
             # auth sock is for gnome-keyring, start our own
             true
         else
@@ -38,7 +36,7 @@ function should_start_agent {
 if should_start_agent; then
     if [ -f "${SSH_ENV}" ]; then
         . "${SSH_ENV}" > /dev/null
-        pidof ssh-agent | grep -q ${SSH_AGENT_PID} || {
+        pidof ssh-agent | grep -q "${SSH_AGENT_PID}" || {
             start_agent
         }
     else
