@@ -81,6 +81,8 @@ let g:ycm_python_interpreter = '/usr/bin/python3'
 
 nnoremap <leader>yf :YcmCompleter FixIt<CR>
 
+nnoremap <leader>d :pu=strftime('%A, %d %B %Y')<CR>
+
 """ syntastic
 let g:syntastic_python_checkers = ['flake8']
 let g:syntastic_python_flake8_args = "--ignore=E203 --ignore=E266 --ignore=E501 --ignore=W503 --max-line-length=88 --select=B,C,E,F,W,T4,B9 --max-complexity=18"
@@ -168,7 +170,6 @@ autocmd BufRead,BufNewFile *.ino setlocal syntax=cpp
 
 au BufRead,BufNewFile *.md.html set filetype=markdown
 
-au BufRead,BufNewFile *.jmd set filetype=markdown
 let g:vim_markdown_math = 1
 let g:vim_markdown_frontmatter = 1
 let g:vim_markdown_new_list_item_indent = 2
@@ -195,3 +196,18 @@ au FileType markdown setlocal wrap lbr nolist fo+=l cc= tw=80 wm=80 spell
 au BufNewFile,BufRead *.config,*.pbtxt setfiletype prototxt
 
 au FileType PROTOTXT setlocal foldmethod=indent
+
+" If buffer modified, update any 'date: ' in the first 20 lines.
+" 'date: ' can have up to 10 characters before (they are retained).
+" Restores cursor and window position using save_cursor variable.
+function! DateStamp()
+  if &modified
+    let save_cursor = getpos(".")
+    let n = min([20, line("$")])
+    keepjumps exe '1,' . n . 's#^\(.\{,10}date: \).*#\1' .
+          \ strftime('%A, %d %B %Y') . '#e'
+    call histdel('search', -1)
+    call setpos('.', save_cursor)
+  endif
+endfun
+au BufWritePre JULIAMARKDOWN call DateStamp()
