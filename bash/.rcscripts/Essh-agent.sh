@@ -13,7 +13,7 @@ function start_agent {
     /usr/bin/ssh-agent | sed '/^echo/d' > "${SSH_ENV}"
     . "${SSH_ENV}" > /dev/null
     ALLIDS=$(find .ssh -path '*id_*' ! -path '*.pub')
-    /usr/bin/ssh-add -q "${ALLIDS}"
+    /usr/bin/ssh-add -q ${ALLIDS}
 }
 
 function should_start_agent {
@@ -22,9 +22,21 @@ function should_start_agent {
         if echo "${SSH_AUTH_SOCK}" | grep -q run >>/dev/null; then
             # auth sock is for gnome-keyring, start our own
             true
-        else
-            # good auth sock, no need
-            false
+        else # ensure auth sock is for running agent
+            if PID=$(pidof ssh-agent); then
+                if echo ${SSH_AUTH_SOCK} | grep -q $PID; then
+                    # ssh agent is running and pid appears in sock name,
+                    # the running one is probably fine
+                    false
+                else
+                    # A socket name is exported, but it does not correspond to
+                    # the running ssh-agent, need to start a new one
+                    true
+                fi
+            else
+                # no ssh-agent running, need to start one
+                true
+            fi
         fi
     else
         # no auth sock, go for it
