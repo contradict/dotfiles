@@ -13,7 +13,7 @@ function start_agent {
     /usr/bin/ssh-agent | sed '/^echo/d' > "${SSH_ENV}"
     . "${SSH_ENV}" > /dev/null
     ALLIDS=$(find .ssh -path '*id_*' ! -path '*.pub')
-    /usr/bin/ssh-add -q ${ALLIDS}
+    /usr/bin/ssh-add ${ALLIDS}
 }
 
 function should_start_agent {
@@ -22,6 +22,9 @@ function should_start_agent {
         if echo "${SSH_AUTH_SOCK}" | grep -q run >>/dev/null; then
             # auth sock is for gnome-keyring, start our own
             true
+        elif echo "${SSH_AUTH_SOCK}" | grep -q 'ssh-' >>/dev/null; then
+            # using ssh tunneled auth, no need to start an agent
+            false
         else # ensure auth sock is for running agent
             if PID=$(pidof ssh-agent); then
                 if echo ${SSH_AUTH_SOCK} | grep -q $PID; then
