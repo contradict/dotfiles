@@ -1,10 +1,11 @@
 #!/bin/bash
 
 install_julia_executable() {
-    local JULIA_VERSION="1.5"
-    local JULIA_PATCH="1"
+    local JULIA_VERSION="1.6"
+    local JULIA_PATCH="2"
     local JULIA_MACHINE
     JULIA_MACHINE=$(uname -m)
+    local STOW_DIR=/usr/local/stow
     case ${JULIA_MACHINE} in
         x86_64)
             JULIA_ARCH="x64"
@@ -17,13 +18,12 @@ install_julia_executable() {
             return
             ;;
     esac
-    JULIA_ARCH="x64"
     JULIA_BASE_URL="https://julialang-s3.julialang.org/bin/linux/${JULIA_ARCH}/${JULIA_VERSION}/"
     JULIA_ARCHIVE="julia-${JULIA_VERSION}.${JULIA_PATCH}-linux-${JULIA_MACHINE}.tar.gz"
     cd /tmp || (echo "Unable to cd /tmp" && return)
     curl -O "${JULIA_BASE_URL}${JULIA_ARCHIVE}"
-    tar -C /usr/local/stow -xzf "${JULIA_ARCHIVE}"
-    stow "julia-${JULIA_VERSION}.${JULIA_PATCH}"
+    tar -C ${STOW_DIR} -xzf "${JULIA_ARCHIVE}"
+    stow -d ${STOW_DIR} "julia-${JULIA_VERSION}.${JULIA_PATCH}"
     cd - || (echo "Unable to restore working directory" && return)
 }
 
