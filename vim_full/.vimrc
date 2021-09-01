@@ -28,6 +28,7 @@ Plugin 'kdheepak/JuliaFormatter.vim'
 Plugin 'hashivim/vim-hashicorp-tools'
 Plugin 'jvirtanen/vim-hcl'
 Plugin 'morhetz/gruvbox'
+Plugin 'cstrahan/vim-capnp'
 
 call vundle#end()
 
