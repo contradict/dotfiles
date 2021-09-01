@@ -12,7 +12,7 @@ function start_agent {
     chmod 600 "${SSH_ENV}"
     /usr/bin/ssh-agent | sed '/^echo/d' > "${SSH_ENV}"
     . "${SSH_ENV}" > /dev/null
-    ALLIDS=$(find .ssh -path '*id_*' ! -path '*.pub')
+    ALLIDS=$(find ~/.ssh -path '*id_*' ! -path '*.pub' ! -path '*disabled*')
     /usr/bin/ssh-add ${ALLIDS}
 }
 
