@@ -27,15 +27,17 @@ function should_start_agent {
             false
         else # ensure auth sock is for running agent
             if PID=$(pidof ssh-agent); then
-                if echo ${SSH_AUTH_SOCK} | grep -q $PID; then
-                    # ssh agent is running and pid appears in sock name,
-                    # the running one is probably fine
-                    false
-                else
-                    # A socket name is exported, but it does not correspond to
-                    # the running ssh-agent, need to start a new one
-                    true
-                fi
+                for p in ${PID}; do
+                    if echo "${SSH_AUTH_SOCK}" | grep -q "$p"; then
+                        # ssh agent is running and pid appears in sock name,
+                        # the running one is probably fine
+                        return 1
+                    else
+                        # A socket name is exported, but it does not correspond to
+                        # the running ssh-agent, need to start a new one
+                        return 0
+                    fi
+                done
             else
                 # no ssh-agent running, need to start one
                 true
