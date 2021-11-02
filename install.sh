@@ -40,14 +40,19 @@ install_julia() {
     stow -t "${HOME}/.julia/config" julia
 }
 
-install_fresh() {
+remove_existing() {
     rm ~/.bash_logout ~/.bashrc ~/.profile
+}
 
+install_minimal() {
     for pkg in ${easy_packages}; do
         install_easy "$pkg"
     done
     pushd git && cp .gitconfig.template .gitconfig ; popd
+    install_easy vim
+}
 
+install_all() {
     if [ -x "$(which vim)" ] && [ -x "$(which git)" ] && vim --version | grep -q +python; then
         echo "Installing complete vim config"
         install_vim
@@ -61,23 +66,30 @@ install_fresh() {
 
 usage() {
     echo "Install dotfiles."
-    echo "Must specify one of -f or -o <name>."
-    echo "  -f        Fresh install. Delete existing config and install this one."
+    echo "Must specify one of -a, -m or -o <name>."
+    echo "  -m        Minimal install. Just the basics. Deletes existing config."
+    echo "  -a        Complete install. Deletes existing config."
     echo "  -o <name> Install just the one set of config files under <name>."
 }
 
-while getopts ":hfo:" opt; do
+while getopts ":hamo:" opt; do
   case ${opt} in
     h ) # process option h
       usage
       exit 0
       ;;
-    f ) # process option f
-      install_fresh
+    a )
+      remove_existing
+      install_all
       exit 0
       ;;
     o )
       install_easy ${OPTARG}
+      exit 0
+      ;;
+    m )
+      remove_existing
+      install_minimal
       exit 0
       ;;
     \? )
