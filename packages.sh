@@ -1,8 +1,8 @@
 #!/bin/bash
 
 install_julia_executable() {
-    local JULIA_VERSION="1.6"
-    local JULIA_PATCH="2"
+    local JULIA_VERSION="1.7"
+    local JULIA_PATCH="3"
     local JULIA_MACHINE
     JULIA_MACHINE=$(uname -m)
     local STOW_DIR=/usr/local/stow
