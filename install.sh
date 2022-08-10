@@ -38,6 +38,9 @@ install_vim() {
 install_julia() {
     mkdir -p "${HOME}/.julia/config"
     stow -t "${HOME}/.julia/config" julia
+    pushd "${VIMDIR}/bundle/lsp-examples"
+    python3 install.py --enable-julia
+    popd
 }
 
 remove_existing() {
