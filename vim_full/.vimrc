@@ -66,6 +66,8 @@ nnoremap <leader>yf :YcmCompleter FixIt<CR>
 
 nnoremap <leader>d :pu=strftime('%A, %d %B %Y')<CR>
 
+nnoremap <leader>s :s#\(\u\l\+\\|\l\+\)\(\u\)#\l\1_\l\2#g<CR>
+
 """ syntastic
 let g:syntastic_python_checkers = ['flake8']
 let g:syntastic_python_flake8_args = "--ignore=E203 --ignore=E266 --ignore=E501 --ignore=W503 --max-line-length=88 --select=B,C,E,F,W,T4,B9 --max-complexity=18"
