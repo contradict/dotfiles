@@ -97,3 +97,18 @@ fi
 
 #if not inside a tmux session, and if no session is started, start a new session
 [[ -z "$TMUX" ]] && which tmux >>/dev/null && exec tmux new-session
+
+# >>> juliaup initialize >>>
+
+# !! Contents within this block are managed by juliaup !!
+
+case ":$PATH:" in
+    *:/home/russel/.juliaup/bin:*)
+        ;;
+
+    *)
+        export PATH=/home/russel/.juliaup/bin${PATH:+:${PATH}}
+        ;;
+esac
+
+# <<< juliaup initialize <<<
