@@ -62,7 +62,7 @@ source ~/.vim/bundle/lsp-examples/vimrc.generated
 " let g:ycm_key_invoke_completion = '<C-Space>'
 let g:ycm_python_interpreter = '/usr/bin/python3'
 
-nnoremap <leader>yf :YcmCompleter FixIt<CR>
+nnoremap <leader>f :YcmCompleter FixIt<CR>
 
 nnoremap <leader>d :pu=strftime('%A, %d %B %Y')<CR>
 
