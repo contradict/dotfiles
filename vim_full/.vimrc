@@ -8,7 +8,6 @@ Plugin 'ycm-core/YouCompleteMe'
 Plugin 'ycm-core/lsp-examples'
 Plugin 'scrooloose/syntastic'
 Plugin 'sirtaj/vim-openscad'
-Plugin 'jelera/vim-javascript-syntax'
 Plugin 'fatih/vim-go'
 Plugin 'thinca/vim-localrc'
 Plugin 'tpope/vim-vividchalk'
@@ -164,9 +163,6 @@ au FileType xml setlocal foldmethod=syntax
 
 " recognize dockerfiles with extensions
 au BufRead,BufNewFile Dockerfile.* set filetype=dockerfile syntax=dockerfile
-
-" better javascript folding
-au FileType javascript call JavaScriptFold()
 
 " yml 2-space indent
 au FileType yaml setlocal tabstop=2 expandtab shiftwidth=2 softtabstop=2
